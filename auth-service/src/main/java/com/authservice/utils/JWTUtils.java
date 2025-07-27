@@ -51,7 +51,7 @@ public class JWTUtils {
 	
 	//private String secretKey = "sundar";
 	private String app = "test";
-	private long expire_in_mts = 30;
+	private long expire_in_mts = 120;
 	
 	//@Autowired
 	//private AuthServiceConfig authConfig;

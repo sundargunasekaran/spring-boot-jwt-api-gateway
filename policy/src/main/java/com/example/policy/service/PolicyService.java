@@ -71,7 +71,7 @@ public class PolicyService {
 		return null;
 	}
 	
-	public Map<Integer, List<PolicyModel>> getCustomerPolicyDetails(PolicyModel policy) {
+	public Map<String, List<PolicyModel>> getCustomerPolicyDetails(PolicyModel policy) {
 		try{
 			List<PolicyModel> modelList = new ArrayList<PolicyModel>();
 			 String sql = "SELECT lup.customer_id,lpp.policy_id,lpp.policy_name,lpp.policy_cc_phone,lpp.policy_term_years " + 
@@ -94,7 +94,7 @@ public class PolicyService {
 			 }
 
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql + orderSql);
-			Map<Integer, List<PolicyModel>> objMap = new HashMap<Integer, List<PolicyModel>>();
+			Map<String, List<PolicyModel>> objMap = new HashMap<String, List<PolicyModel>>();
 			for (Map row : rows) {
 				PolicyModel model = new PolicyModel();
 				int customerId = -1;
@@ -108,12 +108,12 @@ public class PolicyService {
 				model.setPolicyContactNo(new BigDecimal(row.get("policy_cc_phone").toString()).intValue());
 				model.setPolicyYrs(new BigDecimal(row.get("policy_term_years").toString()).intValue());
 				
-				if(objMap.containsKey(customerId)) {
-					objMap.get(customerId).add(model);
+				if(objMap.containsKey(String.valueOf(customerId))) {
+					objMap.get(String.valueOf(customerId)).add(model);
 				}else {
 					List<PolicyModel> pList = new ArrayList<PolicyModel>();
 					pList.add(model);
-					objMap.put(customerId, pList);
+					objMap.put(String.valueOf(customerId), pList);
 				}								
 			}
 			return objMap;

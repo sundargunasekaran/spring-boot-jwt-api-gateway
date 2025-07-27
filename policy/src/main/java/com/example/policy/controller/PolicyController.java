@@ -3,6 +3,8 @@ package com.example.policy.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,7 +32,7 @@ public class PolicyController {
 	}
 	
 	@RequestMapping(value = "/customerPolicy", method = RequestMethod.GET)
-	public Map<Integer, List<PolicyModel>> getCustomerPolicyDetails(PolicyModel policy) {
+	public Map<String, List<PolicyModel>> getCustomerPolicyDetails( HttpServletRequest request,PolicyModel policy) {
 		return policyServrice.getCustomerPolicyDetails(policy);
 	}
 	

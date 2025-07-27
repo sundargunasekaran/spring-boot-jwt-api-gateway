@@ -1,4 +1,4 @@
-package com.example.customer.filter;
+package com.example.policy.filter;
 
 import java.io.IOException;
 import java.security.SignatureException;
@@ -53,7 +53,7 @@ public class JWTFilter extends GenericFilterBean  {
 		    while (headerNames.hasMoreElements()) {
 		        String headerName = headerNames.nextElement();
 		        String headerValue = request.getHeader(headerName);
-		       //System.out.println(headerName +"<><>"+headerValue);
+		       System.out.println("Policy service ---------"+headerName +"<><>"+headerValue);
 		    }
 
 		    if (proxyForwardedHostHeader == null || !proxyForwardedHostHeader.equals(gatewayUrl)) {
